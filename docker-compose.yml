@@ -80,25 +80,25 @@
       postgres:
         condition: service_healthy
 
-  tests:
-    image: ${DOCKER_REGISTRY-}tests
-    build:
-      context: .
-      dockerfile: Tests/Dockerfile
-    environment:
-      ASPNETCORE_ENVIRONMENT: Testing
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
-      POSTGRES_DB_USERS: ${POSTGRES_USERS_DB}_test
-      POSTGRES_DB_PRODUCTS: ${POSTGRES_PRODUCTS_DB}_test
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      X_SVC_AUTH_HEADER: ${X_SVC_AUTH_HEADER}
-    networks:
-      - innoshop_network
-    depends_on:
-      postgres:
-        condition: service_healthy
-    command: ["dotnet", "test"]
+  # tests:
+  #   image: ${DOCKER_REGISTRY-}tests
+  #   build:
+  #     context: .
+  #     dockerfile: Tests/Dockerfile
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: Testing
+  #     JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+  #     POSTGRES_DB_USERS: ${POSTGRES_USERS_DB}_test
+  #     POSTGRES_DB_PRODUCTS: ${POSTGRES_PRODUCTS_DB}_test
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #     X_SVC_AUTH_HEADER: ${X_SVC_AUTH_HEADER}
+  #   networks:
+  #     - innoshop_network
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   command: ["dotnet", "test"]
 
 volumes:
   postgres_data:

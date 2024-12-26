@@ -54,6 +54,9 @@ Explore the Users API endpoints by this link after project starts:
 http://localhost:8082/swagger/index.html 
 ```
 
+# Tests
+Infrastructure for unit and integration tests. Some integration tests are present as examples.
+
 # Possible improvements
 * Apply response caching
 * .Net Aspire orchestration for microservices communication

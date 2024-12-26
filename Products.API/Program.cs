@@ -40,11 +40,12 @@ builder.Logging
 var app = builder.Build();
 
 // apply db changes (migrations) automatically
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
-    dbContext.Database.Migrate();
-}
+if (!(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "").Equals("Testing"))
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
+        dbContext.Database.Migrate();
+    }
 
 if (app.Environment.IsDevelopment())
 {
@@ -61,3 +62,9 @@ app.UseAuthorization();
 app.ConfigureRoutes();
 
 app.Run();
+
+// define class to make tests available
+namespace InnoShop.Products.API
+{
+    public partial class Program { }
+}
